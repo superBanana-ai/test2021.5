@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qbn.dao.StudentDao">
+    <select id="queryStudents" resultType="com.qbn.domain.Student">
+        select id,name from student;
+    </select>
+    <select id="queryStudentParm" resultType="com.qbn.domain.Student">
+        select id,name  from student where name=#{myname} or id=#{myid};
+    </select>
+    <select id="queryStudentObjct" resultType="com.qbn.domain.Student">
+        select id,name from student where id in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>
